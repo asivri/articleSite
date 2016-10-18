@@ -14,7 +14,6 @@ html
                       span.icon-bar
                       span.icon-bar
                       span.icon-bar
-                  a.navbar-brand(href='/') Article
               // Collect the nav links, forms, and other content for toggling
               #bs-example-navbar-collapse-1.collapse.navbar-collapse
                   ul.nav.navbar-nav
@@ -42,9 +41,10 @@ html
 
                   form.navbar-form.navbar-right
                       .form-group
-                      button.btn.btn-default(type='submit') Login
-                      button.btn.btn-default(type='submit') Logout
-                      button.btn.btn-default(type='button', onclick='/signup') Signup
+                      a.btn.btn-default(href='/users/login', role='submit') Login
+                      a.btn.btn-default(href='/users/logout', role='submit') Logout
+                      a.btn.btn-default(href='/users/register', role='submit') Register
+
 
 
               // /.navbar-collapse
