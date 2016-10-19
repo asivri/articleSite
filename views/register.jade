@@ -6,4 +6,23 @@ extends layout
 
 block content
     h1= 'Register'
-    p Here comes some forms
+
+           form(method='post', action='/users/register')
+                    .form-group
+                       label Name
+                       input.form-control(name='name', type='text')
+                   .form-group
+                       label Last Name
+                       input.form-control(name='lastName', type='text')
+                   .form-group
+                       label Email
+                       input.form-control(name='email', type='email')
+                   .form-group
+                       label Username
+                       input.form-control(name='Username', type='text')
+               .form-group
+                   label Password:
+                   input.form-control(name='password', type='password')
+               input.btn.btn-primary(type='submit', name='submit',value='Register')
+
+               //TODO: Fix the style (bold text etc.) 

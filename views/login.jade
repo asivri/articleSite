@@ -6,4 +6,12 @@ extends layout
 
 block content
     h1= 'Login'
-    p Here comes some forms
+
+    form(method='post', action='/users/login')
+            .form-group
+            label Username
+            input.form-control(name='Username', type='text')
+        .form-group
+            label Password:
+            input.form-control(name='password', type='password')
+        input.btn.btn-primary(type='submit', name='submit',value='Login')
