@@ -3,6 +3,9 @@ var router = express.Router();
 //To use Multer File Upload Tool in Registration Page
 var uploadImage = require('multer');
 var upload = uploadImage({dest: './images'});
+var varPassport = require('passport');
+var passportLocal = require('passport-local').Strategy; //Special for PassportJS
+
 
 var User = require('../models/user');
 
@@ -19,6 +22,44 @@ router.get('/register', function(req, res, next) {
 router.get('/login', function(req, res, next) {
   res.render('login');
 });
+
+router.post('/login',
+    varPassport.authenticate('local', {failureRedirect:'/users/login'}),
+    function(req, res) {
+      req.flash('success', 'Successfully logged in');
+      // `req.user` contains the authenticated user.
+      res.redirect('/');
+});
+
+varPassport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+varPassport.deserializeUser(function(id, done) {
+  User.getUserById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+varPassport.use(new passportLocal(function (username, password, done) {
+  User.getUserByUsername(username, function (err, user) {
+    if(err) throw err;
+    if(!user){
+      return done(null, false, {message: 'Please register first!'});
+    }
+    
+    User.conparePassword(password, user.password, function (err, isMatch) {
+      if(err) return done(err);
+      if(isMatch){
+        return done(null, user);
+      }
+      else
+      {
+        return done(null, false, {message:'Invalid Password'});
+      }
+    })
+  });
+}));
 
 router.get('/logout', function(req, res, next) {
   res.render('layout');
