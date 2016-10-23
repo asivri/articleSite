@@ -4,6 +4,8 @@ var router = express.Router();
 var uploadImage = require('multer');
 var upload = uploadImage({dest: './images'});
 
+var User = require('../models/user');
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -23,7 +25,7 @@ router.get('/logout', function(req, res, next) {
 });
 
 //TODO: Create the models!
-router.post('/register',upload.single('userImage') , function(req, res, next) {
+router.post('/register', upload.single('userImage') , function(req, res, next) {
   //To show the registration information on the console (Not really necessary to implement)
   // console.log("Name: " + req.body.name);
   // console.log("Last Name: " + req.body.lastName);
@@ -39,7 +41,7 @@ router.post('/register',upload.single('userImage') , function(req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
   var secondPassword = req.body.secondPassword;
-  // var userImage = req.file.userImage;
+  var userImage = req.file.userImage;
 
 
   //Validation using Express Validator
@@ -58,7 +60,25 @@ router.post('/register',upload.single('userImage') , function(req, res, next) {
       errors: errors
     });
   }
+  else {
+    var newUser = new User({
+      name: name,
+      lastName: lastName,
+      email: email,
+      username: username,
+      password: password,
+      userImage: userImage
+    });
 
+    User.createUser(newUser, function () {
+      // if(err) throw err
+      console.log(newUser);
+    });
+    //TODO: Fix the style of success and error messages
+    req.flash('success', 'Register completed!');
+    res.location('/');
+    res.redirect('/');
+  }
 
 
 });

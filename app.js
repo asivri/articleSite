@@ -6,8 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 //Following step is creating variables for the dependencies:
 var mongoDB = require('mongodb');
-var varMongoose = require('mongoose');
-var dbVar = varMongoose.connection;
+var mongoose = require('mongoose');
+var dbVar = mongoose.connection;
 var connectFlash = require('connect-flash');
 var expressMessages = require('express-messages');
 var expressValidator = require('express-validator');
