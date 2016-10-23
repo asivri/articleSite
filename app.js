@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 //Following step is creating variables for the dependencies:
+var bcrypt = require('bcryptjs');
 var mongoDB = require('mongodb');
 var mongoose = require('mongoose');
 var dbVar = mongoose.connection;
