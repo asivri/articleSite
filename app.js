@@ -75,6 +75,13 @@ app.use(function (req, res, next) {
   next();
 });
 
+//To check wheter user is logged in or not
+app.use('*', function (req, res, next) {
+  res.locals.user = req.user || null;
+  next();
+});
+
+
 app.use('/', routes);
 app.use('/users', users);
 
@@ -98,12 +105,6 @@ if (app.get('env') === 'development') {
     });
   });
 }
-
-//To check wheter user is logged in or not
-app.use('*', function (req, res, next) {
-  res.locals.user = req.user || null;
-  next();
-});
 
 // production error handler
 // no stack traces leaked to user
