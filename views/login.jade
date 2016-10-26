@@ -1,16 +1,18 @@
 //Created by Ahmet on 10/19/2016.
 
-
 extends layout
 
 block content
-    h1= 'Login'
+    h1 Login
 
+    if errors
+        each error, i in errors
+            div.alert.alert-danger #{error.msg}
     form(method='post', action='/users/login')
-            .form-group
-            label Username
-            input.form-control(name='Username', type='text')
         .form-group
-            label Password:
+            label Username
+            input.form-control(name='username', type='text')
+        .form-group
+            label Password
             input.form-control(name='password', type='password')
         input.btn.btn-primary(type='submit', name='submit',value='Login')

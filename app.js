@@ -13,7 +13,7 @@ var connectFlash = require('connect-flash');
 var expressMessages = require('express-messages');
 var expressValidator = require('express-validator');
 var expressSession = require('express-session');
-var varPassport = require('passport');
+var passport = require('passport');
 var passportLocal = require('passport-local').Strategy; //Special for PassportJS
 //Multer setup (For the file upload processes)
 var uploadImage = require('multer');
@@ -47,8 +47,8 @@ app.use(expressSession({
 }));
 
 //Passport setup
-app.use(varPassport.initialize());
-app.use(varPassport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Validator
 app.use(expressValidator({
