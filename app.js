@@ -99,8 +99,14 @@ if (app.get('env') === 'development') {
   });
 }
 
+//To check wheter user is logged in or not
+app.use('*', function (req, res, next) {
+  res.locals.user = req.user || null;
+  next();
+});
+
 // production error handler
-// no stacktraces leaked to user
+// no stack traces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {

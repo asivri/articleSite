@@ -62,11 +62,7 @@ passport.use(new passportLocal(function (username, password, done) {
   });
 }));
 
-router.get('/logout', function(req, res, next) {
-  res.render('layout');
-});
 
-//TODO: Create the models!
 router.post('/register', upload.single('userImage') , function(req, res, next) {
   //To show the registration information on the console (Not really necessary to implement)
   // console.log("Name: " + req.body.name);
@@ -125,8 +121,14 @@ router.post('/register', upload.single('userImage') , function(req, res, next) {
 
 });
 
-router.post('/login', function(req, res, next) {
 
+
+router.get('/logout', function(req, res) {
+  req.logout();
+  req.flash('success', 'Successfully logged out!');
+  res.redirect('/');
 });
+
+
 
 module.exports = router;

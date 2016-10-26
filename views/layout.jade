@@ -41,9 +41,12 @@ html
 
                   form.navbar-form.navbar-right
                       .form-group
-                      a.btn.btn-default(href='/users/login', role='submit') Login
-                      a.btn.btn-default(href='/users/logout', role='submit') Logout
-                      a.btn.btn-default(href='/users/register', role='submit') Register
+                      if !user
+                        a.btn.btn-default(href='/users/login', role='submit') Login
+                        a.btn.btn-default(href='/users/register', role='submit') Register
+                      if user
+                        a.btn.btn-default(href='/users/logout', role='submit') Logout
+
 
 
 
