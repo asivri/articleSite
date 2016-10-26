@@ -9,6 +9,7 @@ var bcrypt = require('bcryptjs');
 var mongoDB = require('mongodb');
 var mongoose = require('mongoose');
 var dbVar = mongoose.connection;
+var db = require('monk')('localhost/articleDB');
 var connectFlash = require('connect-flash');
 var expressMessages = require('express-messages');
 var expressValidator = require('express-validator');
@@ -81,6 +82,10 @@ app.use('*', function (req, res, next) {
   next();
 });
 
+app.use(function(req,res,next){
+  req.db = db;
+  next();
+});
 
 app.use('/', routes);
 app.use('/users', users);

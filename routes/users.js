@@ -23,13 +23,18 @@ router.get('/login', function(req, res, next) {
   res.render('login');
 });
 
+router.get('/writer', function (req, res, next) {
+  res.render('writer');
+});
+
+
 router.post('/login',
     passport.authenticate('local', {failureRedirect:'/users/login'}),
     function(req, res) {
       req.flash('success', 'Successfully logged in');
       // `req.user` contains the authenticated user.
       console.log("Success login");
-      res.redirect('/');
+      res.redirect('/users/writer');
 });
 
 passport.serializeUser(function(user, done) {
@@ -120,7 +125,6 @@ router.post('/register', upload.single('userImage') , function(req, res, next) {
 
 
 });
-
 
 
 router.get('/logout', function(req, res) {
