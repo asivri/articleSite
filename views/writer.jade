@@ -7,13 +7,13 @@ block content
         .row
             .col-lg-9.col-md-3
                 a.thumbnail
-                    img(src='https://upload.wikimedia.org/wikipedia/commons/7/71/St._Bernard_puppy.jpg')
+                    #{users.userImage}
 
         h4 Your Profile Picture
         a.navbar-brand Writer Panel
         br
         ul.nav.navbar-nav
-            a.btn.btn-lg.btn-success(href='/articles/add')
+            a.btn.btn-lg.btn-success(href='/articles/new')
                 span.glyphicon.glyphicon-pencil
                 |  Create Article
                 br

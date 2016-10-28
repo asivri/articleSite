@@ -5,6 +5,10 @@ var uploadImage = require('multer');
 var upload = uploadImage({dest: './images'});
 var passport = require('passport');
 var passportLocal = require('passport-local').Strategy; //Special for PassportJS
+var mongoDB = require('mongodb');
+var mongoose = require('mongoose');
+var dbVar = mongoose.connection;
+var db = require('monk')('localhost/articleDB');
 
 
 var User = require('../models/user');
@@ -24,7 +28,11 @@ router.get('/login', function(req,  res, next) {
 });
 
 router.get('/writer', function (req, res, next) {
-  res.render('writer');
+    var db = req.db;
+    var articles = db.get('users');
+    articles.find({}, {}, function (err, users) {
+        res.render('writer', { users: users});
+    })
 });
 
 
@@ -104,6 +112,8 @@ router.post('/register', upload.single('userImage') , function(req, res, next) {
     });
   }
   else {
+      //Not geting the userImage.
+      //TODO: Fix the userImage functionality
     var newUser = new User({
       name: name,
       lastName: lastName,

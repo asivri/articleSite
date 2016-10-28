@@ -1,0 +1,30 @@
+//Created by Ahmet on 10/28/2016.
+
+extends layout
+
+block content
+    h1=title
+    ul.erros
+        if errors
+            each error, i in errors
+                li.alert.alert-danger #{error.msg}
+
+    form(method='post', action='/articles/new',
+        enctype="multipart/form-data")
+            .form-group
+                label Title:
+                input.form-control(name='title', type='text')
+            .form-group
+                label Category:
+                select.form-control(name='category')
+            .form-group
+                label Body:
+                textarea.form-control(name='body', id='body')
+            .form-group
+                label Image:
+                input.form-control(name='articleImage', type='file')
+            .form-group
+                label Author:
+                select.form-control(name='author')
+                    option(value='Admin') Admin
+             input.btn.btn-default(name='submit', type='submit', value='Publish Post')
