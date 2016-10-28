@@ -4,9 +4,9 @@ block content
   if articles
     each article, i in articles
       .articles
-        h1
-         a(href='/articles/show/#{article._id}')
+      h1
+        a(href='/articles/show/#{article._id}')
           =article.title
-         p.meta Category: #{article.category}, Writer: #{article.author}, Date: #{article.date}
-         =article.body
+        p.meta Category: #{article.category}, Writer: #{article.author}, Date: #{article.date}
+        =article.body
         a.readMore(href='/articles/show/#{article._id}') Read More
