@@ -17,8 +17,8 @@ var expressSession = require('express-session');
 var passport = require('passport');
 var passportLocal = require('passport-local').Strategy; //Special for PassportJS
 //Multer setup (For the file upload processes)
-var uploadImage = require('multer');
-var upload = uploadImage({dest: './images'});
+var multer = require('multer');
+var upload = multer({dest: './images'});
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

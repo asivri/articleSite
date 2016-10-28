@@ -75,3 +75,7 @@ a.h1.articles{
     padding-left: 160px;
 }
 
+.textarea{
+    height: 70px;
+    width: 500px;
+}
