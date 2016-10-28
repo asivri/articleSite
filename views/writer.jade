@@ -3,16 +3,25 @@
 extends layout
 
 block content
-    .row
-        .col-md-3
-            br
-            h3.
-                Welcome Writer
-            br
-            br
-            input.btn.btn-default(name="addCat", value="Add Category")
-            br
-            input.btn.btn-default(name="addArt", value="Add Article")
+    .navbar.navbar-inverse.navbar-fixed-left
+        .row
+            .col-lg-9.col-md-3
+                a.thumbnail
+                    img(src='https://upload.wikimedia.org/wikipedia/commons/7/71/St._Bernard_puppy.jpg')
+
+        h4 Your Profile Picture
+        a.navbar-brand Writer Panel
+        br
+        ul.nav.navbar-nav
+            a.btn.btn-lg.btn-success(href='/articles/add')
+                span.glyphicon.glyphicon-pencil
+                |  Create Article
+                br
+            a.btn.btn-lg.btn-success(href='')
+                span.glyphicon.glyphicon-plus
+                |  Create Category
+
+
 
 
 
