@@ -11,9 +11,15 @@ var multer = require('multer');
 var upload = multer({dest: './images'});
 
 router.get('/new',isAuth, function (req, res, next) {
-    res.render('newpost', {
-       'title': "Add a New Post"
-    })
+    var categories = db.get('categories');
+
+    categories.find({},{}, function (err, categories) {
+        res.render('newpost', {
+            'title': "Add a New Post",
+            'categories': categories
+         })
+    });
+
 });
 
 router.post('/new', isAuth, upload.single('articleImage'), function (req, res, next) {

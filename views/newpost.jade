@@ -17,6 +17,9 @@ block content
             .form-group
                 label Category:
                 select.form-control(name='category')
+                    each category, i in categories
+                        option(value='#{category.name}')
+                        #{category.name}
             .form-group
                 label Article:
                 textarea.form-control(name='article', id='body')
@@ -27,4 +30,7 @@ block content
                 label Author:
                 select.form-control(name='author')
                     option(value='Admin') Admin
-             input.btn.btn-default(name='submit', type='submit', value='Publish Post')
+            input.btn.btn-default(name='submit', type='submit', value='Publish Post')
+            script(src='/ckeditor/ckeditor.js')
+            script
+                 | CKEDITOR.replace('body');
