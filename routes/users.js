@@ -27,7 +27,7 @@ router.get('/login', function(req,  res, next) {
   res.render('login');
 });
 
-router.get('/writer', function (req, res, next) {
+router.get('/writer', isAuth, function (req, res, next) {
     var db = req.db;
     var articles = db.get('users');
     articles.find({}, {}, function (err, users) {
@@ -143,6 +143,13 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
+function isAuth(req, res, next){
+  if(req.isAuthenticated())
+  {
+    return next();
+  }
+  res.redirect('/users/login');
+}
 
 
 module.exports = router;

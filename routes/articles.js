@@ -78,6 +78,8 @@ router.post('/new', isAuth, upload.single('articleImage'), function (req, res, n
     }
 });
 
+
+
 function isAuth(req, res, next){
     if(req.isAuthenticated())
     {

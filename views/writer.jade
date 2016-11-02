@@ -3,26 +3,52 @@
 extends layout
 
 block content
-    .navbar.navbar-inverse.navbar-fixed-left
-        .row
-            .col-lg-9.col-md-3
-                a.thumbnail
-                    #{users.userImage}
+    div
+        .navbar.navbar-inverse.navbar-fixed-left
+            .row
+                .col-lg-9.col-md-3
+                    a.thumbnail
+                        #{users.userImage}
 
-        h4 Your Profile Picture
-        a.navbar-brand Writer Panel
-        br
-        ul.nav.navbar-nav
-            a.btn.btn-lg.btn-success(href='/articles/new')
-                span.glyphicon.glyphicon-pencil
-                |  Create Article
-                br
-            a.btn.btn-lg.btn-success(href='')
-                span.glyphicon.glyphicon-plus
-                |  Create Category
+            h4 Your Profile Picture
+            a.navbar-brand Writer Panel
+            br
+            ul.nav.navbar-nav
+                a.btn.btn-lg.btn-success(href='/articles/new')
+                    span.glyphicon.glyphicon-pencil
+                    |  Create Article
+                    br
+                a.btn.btn-lg.btn-success(href='')
+                    span.glyphicon.glyphicon-plus
+                    |  Create Category
 
 
+    h4 Your Articles
+    if articles
+        each article, i in articles
+            .articles
+                .well.well-lg
+                    table
+                        thead
+                            tr
+                                th(width='200') Title
+                                th(width='200') Category
+                                th(width='200') Date
+                                th(width='200') Edit
+                                th(width='200') Delete
+                        tbody
 
+                            tr
+                                td
+                                    #{article.title}
+                                td
+                                    #{article.category}
+                                td
+                                    #{article.date}
+                                td
+                                    a.button.btn.btn-success(href='#',type='button') Edit
+                                td
+                                    a.button.btn.btn-success(href='#',type='button') Delete
 
 
 
